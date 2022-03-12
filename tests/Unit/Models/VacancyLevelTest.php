@@ -2,6 +2,12 @@
 
 namespace Tests\Unit\Models;
 
+/**
+ * テストクラスにはPHPUnit\Framework\TestCaseを継承する
+ * クラス名は対象名Testとする
+ * テストは上から順に実行される
+ */
+
 use PHPUnit\Framework\TestCase;
 use App\Models\VacancyLevel;
 
