@@ -1,61 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## 概要
+### ユニットテストの概要
+ユニットテスト（単体テスト）は、各クラスが持つメソッドが意図通りに動作するかの検証するために実施する。ブラウザ上でのテストと違い、テストをコード化するため自動化が可能になる。テストを自動化することでコードの品質を高めることができる。多くのテストパターンが必要な項目についてはブラウザ上でのテストと比較してテスト工数を削減できる可能性がある。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### PHPUnitの概要
+PHPUnitは、「開発者は、新しくコミットされたコードの誤りをすばやく見つけ、コードの他の部分で不具合やバグが発生していないと明言できる必要がある」という考えに基づいたPHPテスト用フレームワークである。  
+公式マニュアル:https://phpunit.readthedocs.io/ja/latest/
 
-## About Laravel
+### PHPUnitとLaravelの関係性
+LaravelはPHPUnitをサポートしており標準で搭載されている。Laravelをインストールしていれば追加インストールなくPHPUnitによるテストが実行できる。Laravelをインストールしたディレクトリにあるphpunit.xmlがPHPUnitの設定ファイルとなる。  
+↓インストール直後のテスト実行例
+```
+# php artisan test
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+   PASS  Tests\Unit\ExampleTest
+  ✓ example
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+   PASS  Tests\Feature\ExampleTest
+  ✓ example
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  Tests:  2 passed
+  Time:   4.64s
+```
+### PHPUnit関連用語
+#### ユニットテスト
+Service、Model、Middleware、Policyなどで作ったクラスのメソッド単位でテストする。最も粒度の細かいテスト。```/tests/Unit```配下にテストを配置する。
+#### フィーチャーテスト
+１つのHTTPリクエスト単位の動きをテストする。コントローラのアクションメソッド単位でのテスト。```/tests/Feature```配下にテストを配置する。
+#### アサーション
+あるコードが実行される時に満たされるべき条件を記述して実行時にチェックする仕組みのこと。例えばassertEquals()は引数1と引数2が等しくない場合にエラーを返す。以下のような使い方をする。
+```
+    public function testFailure()
+    {
+        // 等しくないのでエラーを返す
+        $this->assertEquals(1, 0);
+    }
+```
 
-## Learning Laravel
+#### アノテーション
+メタデータを表す特別な構文のこと。PHPUnitでは各メソッドの前にアノテーションを付与することで、実行時の振る舞いを設定できる。以下のような使い方をする。
+```
+/**
+ * @test //このメソッドがテストメソッドであることを明示的に指定する
+ */
+public function initialBalanceShouldBe0()
+{
+    $this->assertSame(0, $this->ba->getBalance());
+}
+```
+（順次追加）
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ハンズオン
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 目的
+- テスト駆動開発の基本的な流れの修得
+- ユニットテスト（単体テスト）とフィーチャーテスト（機能テスト）の修得
+- Laravelでの自動テスト手法の修得
 
-## Laravel Sponsors
+### 参考資料
+基本的な流れは下記リンクの教材に従う。適宜追加で学習していく。  
+>「Laravelでテスト駆動開発を学ぼう！」https://www.techpit.jp/courses/92
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 動作環境
+- Laravel v8.62.0
+- PHP 8.0.11
+- MySQL 8.0.26
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 全体の流れ
+1. 環境構築
+2. ユニットテストの作り方
+3. フィーチャーテストの作り方
+4. まとめ
