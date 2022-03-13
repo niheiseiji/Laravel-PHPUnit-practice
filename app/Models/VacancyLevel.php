@@ -23,4 +23,15 @@ class VacancyLevel
             return '◎';
         }
     }
+
+    public function slug(): string
+    {
+        if ($this->remainingCount === 0) {
+            return 'empty';
+        }
+        if ($this->remainingCount < 5) {
+            return 'few';
+        }
+        return 'enough';
+    }
 }
