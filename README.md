@@ -75,12 +75,13 @@ public function initialBalanceShouldBe0()
 - MySQL 8.0.26
 
 ### ユニットテストとフィーチャーテストの作り方
-以下、テスト作成の時系列順でテストクラスの作り方と実行結果を記載する。なお詳細な開発内容はテストケースごとに作った各ブランチを参照されたい。
-（※README.mdはmainブランチでのみ最新化している）  
+以下、テスト作成の時系列順でテストクラスの作り方と実行結果を記載する。なお詳細な開発内容はテストケースごとに作った各ブランチを参照されたい。各ブランチでの開発内容を差分を分かりやすく表示するためにプルリクを追加しているのでそちらでも確認可能。  
+（※README.mdはmainブランチでのみ最新化している）
 
 基本的な開発の流れとしてテスト駆動開発の流儀に則り、テストクラス作成→テスト実行（失敗）→テストが通るように開発→テスト実行（成功）となる。
 #### ユニットテストcase1：予約枠の残数に対して表示される記号が正しいかテストする
->ブランチ名:```unit-test-1```
+>ブランチ名:```unit-test-1```  
+>差分：https://github.com/niheiseiji/Laravel-PHPUnit-practice/pull/2/files
 ##### テストクラスを作成する
 ```
 /app #  php artisan make:test --unit Models/VacancyLevelTest
@@ -118,7 +119,8 @@ Model created successfully.
   Time:   0.67s
 ```
 #### ユニットテストcase2：予約枠の残数に対して使用するCSSクラスの文字列が正しいかテストする
->ブランチ名:```unit-test-2```
+>ブランチ名:```unit-test-2```  
+>差分：https://github.com/niheiseiji/Laravel-PHPUnit-practice/pull/3/files
 ##### テストクラスを作成する
 ```
 /app # php artisan make:test --unit Models/VacancyLevelSlugTest
@@ -147,7 +149,8 @@ Test created successfully.
 ```
 
 #### フィーチャーテストcase1：レッスンの詳細ページを開き、レッスン名と空き状況マークが表示されているかテストする
->ブランチ名:```feature-test-1```
+>ブランチ名:```feature-test-1```  
+>差分：https://github.com/niheiseiji/Laravel-PHPUnit-practice/pull/5/files
 ##### テストクラスを作成する
 ```
 /app # php artisan make:test Http/Controllers/LessonControllerTest
@@ -176,7 +179,8 @@ Test created successfully.
 ```
 
 #### フィーチャーテストcase2：レッスンの詳細ページを開いたときのレッスン空き状況を、テストデータをfakerで作ってテストする
->ブランチ名:```feature-test-2```
+>ブランチ名:```feature-test-2```  
+>差分：https://github.com/niheiseiji/Laravel-PHPUnit-practice/pull/6/files
 ##### テストクラスを作成する
 ```
 /app # php artisan make:test Http/Controllers/LessonController2Test
@@ -209,7 +213,8 @@ Test created successfully.
 ```
 
 #### ユニットテストcase3：ユーザーが加入するプランに応じてその月の予約可否をテストする
->ブランチ名:```unit-test-3```
+>ブランチ名:```unit-test-3```  
+>差分：https://github.com/niheiseiji/Laravel-PHPUnit-practice/pull/4/files
 ##### テストクラスを作成する
 ```
 /app # php artisan make:test --unit Models/UserTest
