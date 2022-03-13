@@ -11,6 +11,11 @@ class VacancyLevel
         $this->remainingCount = $remainingCount;
     }
 
+    public function __toString()
+    {
+        return $this->mark();
+    }
+
     public function mark(): string
     {
         if ($this->remainingCount === 0) {
